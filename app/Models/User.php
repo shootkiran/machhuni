@@ -2,16 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\Geographical;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Faker\Generator as Faker;
+// use Malhal\Geographical;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
+    use HasApiTokens, HasFactory, Notifiable, Geographical;
+    protected static $kilometers = true;
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +24,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'latitude',
+        'longitude'
     ];
 
     /**
@@ -52,5 +57,10 @@ class User extends Authenticatable
     public function ReviewsOfMe()
     {
         return $this->hasMany(Review::class, 'user_id');
+    }
+    public static function seed()
+    {
+        WorkCategory::factory()->count(100)->create();
+        User::factory()->count(500)->hasWorks(1)->create();
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\WorkController;
 use App\Http\Livewire\ListWorkers;
 use App\Http\Livewire\MyWorks;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +26,8 @@ Auth::routes();
 Route::middleware('auth')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/work/{work}/list-workers', ListWorkers::class)->name('work.list-workers');
-    // Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
-    // Route::get('/my-works', MyWorks::class)->name('my-works');
-    // Route::get('/work/{works}/list-workers', ListWorkers::class)->name('work.list-workers');
+});
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function(){
+    Route::resource('user', UserController::class);
+    Route::resource('work', WorkController::class);
 });

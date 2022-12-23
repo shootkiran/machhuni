@@ -10,10 +10,10 @@
         </form>
     </x-display.col>
     @if ($show_search_result)
-        <x-display.col col=12 title="Search Results for {{ $keyword }}">
+        <x-display.col col=12 title="Found Works for '{{ $keyword }}'">
             @forelse($results as $work)
                 <ul>
-                    <li> People/Organisation For {{ $work->title }}
+                    <li class="list-group-item"> {{ $work->title }}
                         <a href="{{ route('work.list-workers', $work) }}">View</a>
                     </li>
 

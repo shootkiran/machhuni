@@ -19,6 +19,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     @livewireStyles
+    @stack('styles')
 </head>
 
 <body>
@@ -82,11 +83,13 @@
 
         <main class="py-4">
             <div class="container">
-                {{ $slot }}
+                @yield('content')
+                {{ $slot ?? null }}
             </div>
         </main>
     </div>
     @livewireScripts
+    @stack('scripts')
 </body>
 
 </html>

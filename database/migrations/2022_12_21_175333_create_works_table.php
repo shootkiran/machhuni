@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('works', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->unique();
             $table->foreignId('work_category_id')->nullOnDelete();
             $table->text('alternative_titles')->nullable();
             $table->text('description')->nullable();

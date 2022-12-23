@@ -16,13 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::firstOrCreate(
-            ['email' => 'shootkiran@gmail.com'],
-            [
-                'name' => "Kiran Shrestha",
-                'password' => \bcrypt("kiran123")
-            ]
-        );
+        User::seed();
+       
         Work::seed();
         // \App\Models\User::factory(10)->create();
 

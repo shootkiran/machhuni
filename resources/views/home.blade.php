@@ -1,9 +1,8 @@
 @extends('layouts.app')
-
 @section('content')
 @livewire('search', ['user' => $user], key($user->id))
 
-        @livewire('my-works', ['user' => request()->user()], key(request()->user()->id))
+@livewire('my-works', ['user' => request()->user()], key(request()->user()->id))
 
     <div class="row">
         <x-display.col title="My Reviews" col="4">
@@ -16,5 +15,4 @@
             <x-work.popular-works count=5 />
         </x-display.col>
     </div>
-
 @endsection

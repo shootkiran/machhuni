@@ -19,6 +19,10 @@ class Work extends Model
         Work::createWork("Taxi", "Transportation");
         User::find(1)->Works()->syncWithoutDetaching([1, 2]);
     }
+    
+    public function scopeExcludeMe($query){
+        dd($query);
+    }
     public static function createWork(string $title, string $category, array $alternative_titles = null, string $description = null)
     {
         Work::firstOrCreate([
