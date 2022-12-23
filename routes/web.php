@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Livewire\MyWorks;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Auth::routes();
+Route::middleware('auth')->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
+    Route::get('/my-works', MyWorks::class)->name('my-works');
 });
