@@ -1,15 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <x-display.col>
-            <form action="{{route('search')}}" method="get">
-                <label for="keyword">Search People/Organisation For</label>
-                <input name="keyword" class="mt-3 mb-3 pt-5 pb-5 text-lg form-control" placeholder="painting/plaster/tution/electrician">
-            </form>
-        </x-display.col>
-    </div>
+@livewire('search', ['user' => $user], key($user->id))
+
+        @livewire('my-works', ['user' => request()->user()], key(request()->user()->id))
+
     <div class="row">
         <x-display.col title="My Reviews" col="4">
             <x-review.list count=5 :user="request()->user()" />
@@ -21,5 +16,5 @@
             <x-work.popular-works count=5 />
         </x-display.col>
     </div>
-</div>
+
 @endsection

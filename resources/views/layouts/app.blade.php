@@ -81,7 +81,9 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                {{ $slot }}
+            </div>
         </main>
     </div>
     @livewireScripts

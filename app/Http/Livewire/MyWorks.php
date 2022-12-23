@@ -6,6 +6,8 @@ use Livewire\Component;
 
 class MyWorks extends Component
 {
+    public $user;
+    public $works;
     public function render()
     {
         $this->user= request()->user();
